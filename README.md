@@ -9,7 +9,7 @@
 | Тема №3. Реализация циклических алгоритмов        | [Ссылка](lab3/README.md)  | Не Готово |
 
 ## Методички
-[Методичка ОАиП - Часть 1 - 2017 - Беспалов](metodochka_OAiP_Part_1_2017_Bespalov.pdf)
+[Методичка по ОАиП - Часть 1 - 2017 - Беспалов](metodochka_OAiP_Part_1_2017_Bespalov.pdf)
 
 ## Автор
 [DelovoiLemon](https://github.com/DelovoiLemon)

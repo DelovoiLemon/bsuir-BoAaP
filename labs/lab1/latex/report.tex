@@ -1,0 +1,74 @@
+\input{../../preamble}
+\usepackage{listings}
+\usepackage{xcolor}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.05, 0.95, 0.96}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle} {
+    backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codeblue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                   
+    keepspaces=true,             
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\input{titlepage}
+
+\section{Линейный вычислительный процесс}
+
+\textbf{Цель работы}: изучить правила составления текстов программ, научиться
+реализовывать линейные алгоритмы; написать и отладить программу, реализу-
+ющую линейный алгоритм.
+
+\subsection{Первый уровень сложности}
+
+\subsubsection{Условие}
+
+\input{tasks/task1}
+
+\subsubsection{Исходный код}
+\lstinputlisting{../src/task1.c}
+
+\subsubsection{Пример}
+\lstinputlisting{examples/example1.txt}
+
+\subsection{Второй уровень сложности}
+
+\subsubsection{Условие}
+
+\input{tasks/task2}
+
+\subsubsection{Исходный код}
+\lstinputlisting{../src/task2.c}
+
+\subsubsection{Пример}
+\lstinputlisting{examples/example2.txt}
+
+\subsection{Третий уровень сложности}
+
+\subsubsection{Условие}
+
+\input{tasks/task3}
+
+\subsubsection{Исходный код}
+\lstinputlisting{../src/task3.c}
+
+\subsubsection{Пример}
+\lstinputlisting{examples/example3.txt}
+
+\end{document}

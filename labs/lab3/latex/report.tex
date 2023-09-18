@@ -1,0 +1,50 @@
+\input{../../preamble}
+\usepackage{listings}
+\usepackage{xcolor}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.05, 0.95, 0.96}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle} {
+    backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codeblue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                   
+    keepspaces=true,             
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+
+\input{titlepage}
+
+\section{Реализация циклических алгоритмов}
+
+\textbf{Цель работы}: изучить циклические операторы while, do-while, for,
+научиться реализовывать циклические алгоритмы. Изучив простейшие средства
+отладки программ, составить и отладить программу.
+
+\subsection{Третий уровень сложности}
+
+\subsubsection{Условие}
+
+\input{tasks/task3}
+
+\subsubsection{Исходный код}
+\lstinputlisting{../src/task3.c}
+
+\subsubsection{Пример}
+\lstinputlisting{examples/example3.txt}
+
+\end{document}

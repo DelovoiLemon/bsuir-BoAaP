@@ -7,9 +7,7 @@
 void draw_array(long *array, long cols, long rows) 
 {
 	for(int i = 0; i < cols; i++) {
-		for(int j = 0; j < rows; j++) {
-			printf("%i\t", array[i+cols*j]);
-		}
+		for(int j = 0; j < rows; j++) printf("%i\t", array[i+cols*j]);
 		printf("\n");
 	}
 }
@@ -20,39 +18,25 @@ long nums_count(long n){
 	return count;
 }
 
-long get_nums(long n, long **array){
-	long i; *array = malloc(nums_count(n)*sizeof(char));
-	if(*array == NULL) {
-	    printf(NULLPTRMSG);
-	    exit(1);
-	}
-	for(i = 0; n; i++) {
-		(*array)[i] = n % 10;
-		n /= 10;
-	}
-	return i;
-}
-
 long task(long n, long **arr) {
-    long n_count = get_nums(n, arr);
-    
-    for(long i = 0; i < n_count; i++) {
-        (*arr)[i] = (*arr)[i] * (*arr)[i];
+    long tmp, size = nums_count(n);
+    *arr = malloc(size*sizeof(char));
+    for(long i = size; n;i--) {
+        tmp = n % 10;
+        (*arr)[i] = tmp*tmp;
+        n /= 10;
     }
-    return n_count;
+    return size;
 }
 
 int main() {
-	char *arr1; 
-	int n, arr_len;
-	
-	// Ввод исходных данных
+	long *arr1; 
+	long n, arr_len;
 	printf("Enter n: ");
-	if(scanf("%d", &n) < 1) {
+	if(scanf("%ld", &n) < 1) {
 		printf(NONUMMSG);
 		exit(1);
 	}
-
 	arr_len = task(n, &arr1);
 	printf("Task 1:\n");
 	draw_array(arr1, 1, arr_len);

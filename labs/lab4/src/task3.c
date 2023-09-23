@@ -2,57 +2,49 @@
 #include<math.h>
 #include<stdlib.h>
 #define NONUMMSG "Error! No number entered!\n"
+#define NULLPTRMSG "Error! Null pointer used!\n"
 
-long task1(long n, char **array) {
-  	long num_count = nums_count(n);
-	*array = (char*) malloc(num_count*sizeof(char));
-	while(n) {
-		if(n % 10 % 3 == 0) {
-			(*array)[valid_count] = n % 10;
-			valid_count++;
+void draw_array(long *array, long cols, long rows) 
+{
+	for(int i = 0; i < cols; i++) {
+		for(int j = 0; j < rows; j++) {
+			printf("%i\t", array[i+cols*j]);
 		}
-		n /= 10;
+		printf("\n");
 	}
-	return num_count;
-}
-  
-void task2(double *arr1, int arr1_len) {
-	double a, tmp;
-	int a_count = 0, tmp_count;
-	for(int i = 0; i < arr1_len; i++) {
-		tmp_count = 0;
-		tmp = arr1[i];
-		for(int j = i; j < arr1_len; j++) {
-			if(tmp == arr1[j]) tmp_count++;
-		}
-		if(tmp_count > a_count) {
-			a_count = tmp_count;
-			a = tmp;
-		}
-	}
-	const arr2_len = 5;
-	double *arr2;
-	arr2 = (double*) malloc(arr2_len*sizeof(double));
-	printf
-	for(int i = 1; i <= arr2_len; i++) {
-		arr2[i] = pow(a, i);
-		printf("%i\t", arr2[i]);
-	}
-	printf("\n");
 }
 
-int nums_count(int n){
-	int count = 0;
-	while(n) {
-		n /= 10;
-		count++
-	}
+long nums_count(long n){
+	long count = 0;
+	while(n) count++, n /=10;
 	return count;
+}
+
+long get_nums(long n, long **array){
+	long i; *array = malloc(nums_count(n)*sizeof(char));
+	if(*array == NULL) {
+	    printf(NULLPTRMSG);
+	    exit(1);
+	}
+	for(i = 0; n; i++) {
+		(*array)[i] = n % 10;
+		n /= 10;
+	}
+	return i;
+}
+
+long task(long n, long **arr) {
+    long n_count = get_nums(n, arr);
+    
+    for(long i = 0; i < n_count; i++) {
+        (*arr)[i] = (*arr)[i] * (*arr)[i];
+    }
+    return n_count;
 }
 
 int main() {
 	char *arr1; 
-	long n, arr1_len;
+	int n, arr_len;
 	
 	// Ввод исходных данных
 	printf("Enter n: ");
@@ -60,7 +52,10 @@ int main() {
 		printf(NONUMMSG);
 		exit(1);
 	}
-        arr1_len = task1(n, &arr1);
 
+	arr_len = task(n, &arr1);
+	printf("Task 1:\n");
+	draw_array(arr1, 1, arr_len);
+	
 	return 0;
 }

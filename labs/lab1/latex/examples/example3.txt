@@ -1,5 +1,2 @@
-lab1 git:(master) $ gcc -lm task3.c -o task3
-lab1 git:(master) $ ./task3
 Enter x, y, z: 6.251 0.827 25.001
 Result: b = 0.712021
-lab1 git:(master) $ 

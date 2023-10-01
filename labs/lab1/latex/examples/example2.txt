@@ -1,6 +1,3 @@
-lab1 git:(master) $ gcc -lm task2.c -o task2
-lab1 git:(master) $ ./task2 
 Enter alpha: 23
 Result: z1 = -0.619038
 Result: z2 = -0.619038
-lab1 git:(master) $ 

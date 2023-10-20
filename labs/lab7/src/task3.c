@@ -13,27 +13,34 @@ char get_alpha_start(char c) {
 }
 char get_letter_num(char c) { return c - get_alpha_start(c); }
 char shift_letter(char c, int count) { return (is_latin(c)) ? get_alpha_start(c) + (get_letter_num(c) + count) % LATIN_COUNT :  c; }
-void encrypt(char *str) { for(int i = 0; str[i]; i++) str[i] = shift_letter(str[i], 1); }
-void decrypt(char *str) { for(int i = 0; str[i]; i++) str[i] = shift_letter(str[i], -1); }
+void encrypt(char *str) { for(int i = 0; str[i]; i++) str[i] = shift_letter(str[i], -1); }
+void decrypt(char *str) { for(int i = 0; str[i]; i++) str[i] = shift_letter(str[i], 1); }
 
 int main() {
-    int size;
-    char *str;
-    printf("Enter str size: ");
-    if(scanf("%i", &size) < 1) {
-		printf(NONUMMSG);
-		exit(1);
+    int size; char *str; FILE* file;
+    char *filename = "text.enc";
+    printf("Enter e to encrypt, <anykey> to decrypt: ");
+    switch(getchar()) {
+        case 'e':
+            printf("Enter string: ");
+            scanf("%s", str);
+            encrypt(str);
+            printf("Encrypted str: \n%s\n", str);
+            if((file = fopen(filename, "w")) == NULL) { printf("Error opening file"); exit(1); }
+            printf("Putting str to file\n");
+            fprintf(file, "%s", str);
+            fclose(file);
+
+            break;
+        default:
+            printf("Trying to read text.enc\n");
+            if((file = fopen(filename, "r")) == NULL) { printf("Error opening file"); exit(1); }
+            fscanf(file, "%s", str);
+            fclose(file);
+            decrypt(str);
+            printf("Decrypted str:\n%s\n", str);
+            break;
     }
-    size++;
-    str = malloc((size)*sizeof(char));
-    printf("Enter string: ");
-    for(int i = 0; i <= size; i++) {
-        str[i] = getchar();
-    }
-    str[size+1] = '\0';
-    task(str);
-    printf("Result:\n");
-    puts(str);
 
     return 0;
 }

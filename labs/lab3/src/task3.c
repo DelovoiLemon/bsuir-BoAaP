@@ -7,9 +7,11 @@ double my_abs(double n) { return n > 0 ? n : -n; }
 long fact(long num){ return num > 1 ? num * fact(num - 1) : 1; }
 
 double S(double x, long n) {
-	double sum = 0;
-	for(long k = 0; k <= n; k++) 
-		sum += (k*k + 1.)/fact(k) * pow(x/2, k);
+	double r = 1, sum = 1, xdiv2 = x / 2.;
+	for(long k = 1; k <= n; k++) { 
+		r *= xdiv2 / k;
+		sum += r * (k*k + 1);
+	}
 	return sum;
 }
 

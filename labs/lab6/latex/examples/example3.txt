@@ -1,0 +1,5 @@
+./task3 
+Enter string: h@11o, w0rld!
+Readed string: h@11o, w0rld!
+Result:
+*@##*, *#***!

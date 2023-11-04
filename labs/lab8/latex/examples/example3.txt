@@ -1,0 +1,6 @@
+./task3             
+Enter n: 5567
+Recursive:
+n = 5567 y(n) = 0.000180
+Linear:
+n = 5567 y(n) = 0.000180

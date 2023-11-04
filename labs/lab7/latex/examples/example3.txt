@@ -1,0 +1,12 @@
+src git:(master) $ ./task3
+Enter e to encrypt, <anykey> to decrypt: e
+Enter string: hello, world!123
+Encrypted str: 
+gdkkn, vnqkc!123
+Putting str to file
+src git:(master) $ ./task3
+Enter e to encrypt, <anykey> to decrypt: d
+Trying to read text.enc
+Decrypted str:
+hello, world!123
+

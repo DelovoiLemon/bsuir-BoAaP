@@ -1,16 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define NONUMMSG "Error! No number entered!\n"
+#include<ncurses.h>
 #define BUFFSIZE 256
 #define LATIN_COUNT ('z' - 'a' + 1)
+enum modes { enc = '1', dec = '2', quit = '3' };
 
 char is_num(char c) { return c >= '0' && c <= '9'; }
 char is_lower(char c) { return c >= 'a' && c <= 'z'; }
 char is_upper(char c) { return c >= 'A' && c <= 'Z'; }
 char is_latin(char c) { return is_upper(c) || is_lower(c); }
 char get_alpha_start(char c) {
-    if(is_lower(c)) return 'a';
-    if(is_upper(c)) return 'A';
+       return (is_lower(c)) ? 'a' : ((is_upper(c)) ? 'A' : '\0');
 }
 char get_letter_num(char c) { return c - get_alpha_start(c); }
 char shift_letter(char c, int count) { 
@@ -23,37 +23,48 @@ int get_str_size(char *str) {
 void encrypt(char *str) { for(int i = 0; str[i]; i++) str[i] = shift_letter(str[i], -1); }
 void decrypt(char *str) { for(int i = 0; str[i]; i++) str[i] = shift_letter(str[i], 1); }
 
+char read_mode() {
+	char mode;
+	do {
+        	printf("Choose program mode:\n %c - encrypt\n %c - decrypt\n %c - exit\n\n", enc, dec, quit);
+        	mode = getchar();
+	} while(mode < enc || mode > quit);
+	return mode;
+}
+
+
+
 int main() {
-	int size; char *str; FILE* file;
+	int size; char *str, mode = 0; FILE* file = NULL;
 	char *filename = "text.enc";
-	printf("Enter e to encrypt, <anykey> to decrypt: ");
-	switch(getchar()) {
-		case 'e':
-			printf("Enter string: ");
-			str = malloc(BUFFSIZE*sizeof(char));
-			scanf("\n%256[^\n]", str);
+	while(mode != quit)
+	{
+		mode = read_mode();
+		if(mode == enc) {
+			printf("Enter string (up to 256 symbols): ");
+			str = malloc(BUFFSIZE * sizeof(char));
+			fgets(str, BUFFSIZE, file);
 			str = realloc(str, get_str_size(str));
 			encrypt(str);
 			printf("Encrypted str: \n%s\n", str);
 			if((file = fopen(filename, "w")) == NULL) { 
-				printf("Error opening file"); exit(1);
+				printf("Can't open file for reading\n"); exit(1);
 			}
 			printf("Putting str to file\n");
-			fprintf(file, "%s", str);
+			fputs(str, file);
 			fclose(file);
-			break;
-		default:
-			printf("Trying to read text.enc\n");
+		} else if(mode == dec) {
+			printf("Trying to read %s\n", filename);
 			if((file = fopen(filename, "r")) == NULL) { 
 				printf("Error opening file"); exit(1); 
 			}
 			str = malloc(BUFFSIZE*sizeof(char));
-			fscanf(file, "%[^\n]s", str);
+			fgets(str, BUFFSIZE, file);
 			str = realloc(str, get_str_size(str));
-			fclose(file);
 			decrypt(str);
 			printf("Decrypted str:\n%s\n", str);
-			break;
+			fclose(file);
+		}
 	}
 	free(str);
 	return 0;

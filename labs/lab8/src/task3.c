@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define NONUMMSG "Error! No number entered!\n"
-typedef double func(int);
+typedef double (*func)(int);
 double y_rec(int n) { return (n > 0) ? 1 / (n + y_rec(n - 1)) : 0.5; }
 double y_lin(int n) 
 {
